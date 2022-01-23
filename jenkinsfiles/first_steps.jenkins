@@ -15,6 +15,7 @@ stages {
   stage("Preparations") {
     steps {
     sh 'ssh root@192.168.56.107 \'hostname\''
-    }
+   }
   }
+ }
 }
