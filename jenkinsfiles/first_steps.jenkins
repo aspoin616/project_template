@@ -16,6 +16,11 @@ stages {
     sh 'ssh root@192.168.56.107 \'hostname\''
    }
   }
+      stage("Seconв step") {
+    steps {
+    sh 'ssh root@192.168.56.107 \'uptime\''
+   }
+  }
  }
 }
 
