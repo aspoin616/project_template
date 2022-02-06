@@ -15,7 +15,7 @@ stages {
     steps {
     echo "======================start building image=============="
     dir ('docker/tailbox'){
-      sh 'docker build .'
+      sh 'docker build . '
    }
   }
  }
