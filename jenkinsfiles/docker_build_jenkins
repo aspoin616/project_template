@@ -16,7 +16,7 @@ stages {
     steps {
     echo "======================start building image=============="
     dir ('docker/toolbox'){
-      sh 'docker build -t toolbox:latest . '
+      sh 'docker build -t vkuznetcov/toolbox:latest . '
    }
   }
  }
