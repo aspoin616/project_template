@@ -15,10 +15,11 @@ pipeline {
         stage("docker login"){
             steps{
                 echo "=======docker login========"
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_vkuznetcov', usernameVariable: 'USERNAME', passwordVariavle: 'PASSWORD')])
-                sh """
-                docker login -u $USERNAME -p $PASSWORD
-                """
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_vkuznetcov', usernameVariable: 'USERNAME', passwordVariavle: 'PASSWORD')]){
+                    sh """
+                    docker login -u $USERNAME -p $PASSWORD
+                    """
+                }
             }
         }
         stage("create docker image") {
