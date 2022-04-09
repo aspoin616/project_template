@@ -5,20 +5,28 @@ properties([disableConcurrentBuilds()])
 pipeline {
     agent{
        label 'master'
-       }
-     options {
+    }
+    options {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
+    }
+    triggers { pollSCM('* * * * *') }
+    stages {
+        stage("docker login"){
+            steps{
+                echo "=======docker login========"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_vkuznetcov', usernameVariable: 'USERNAME', passwordVariavle: 'PASSWORD')])
+                sh """
+                docker login -u $USERNAME -p $PASSWORD
+                """
+            }
         }
-triggers { pollSCM('* * * * *') }
-stages {
-  stage("create docker image") {
-    steps {
-    echo "======================start building image=============="
-    dir ('docker/toolbox'){
-      sh 'docker build -t vkuznetcov/toolbox:latest . '
-   }
-  }
- }
-}
+        stage("create docker image") {
+            steps {
+                echo "======================start building image=============="
+                dir ('docker/toolbox'){
+                sh 'docker build -t vkuznetcov/toolbox:latest . '
+            }
+        }
+    }
 }
