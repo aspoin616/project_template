@@ -26,6 +26,15 @@ pipeline {
                 echo "======================start building image=============="
                 dir ('docker/toolbox'){
                 sh 'docker build -t vkuznetcov/toolbox:latest . '
+                }
+            }
+        }
+        stage("docker push") {
+            steps {
+                echo "=========start pushing image+++++"
+                sh """
+                docker pusj vkuznetcov/toolbox:latest
+                """
             }
         }
     }
