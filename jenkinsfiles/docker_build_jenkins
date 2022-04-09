@@ -33,7 +33,7 @@ pipeline {
             steps {
                 echo "=========start pushing image+++++"
                 sh """
-                docker pusj vkuznetcov/toolbox:latest
+                docker push vkuznetcov/toolbox:latest
                 """
             }
         }
